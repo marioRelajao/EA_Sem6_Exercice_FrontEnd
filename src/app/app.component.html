@@ -65,7 +65,7 @@
             <button
               type="submit"
               class="btn btn-success"
-              (click)="addEmployee()"
+              (click)="agregarEmployee()"
             >
             Save
             </button>
@@ -88,6 +88,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let employee of employees; let i = index">
+            <td>{{employee._id}}</td>
             <td>{{employee.name}}</td>
             <td>{{employee.position}}</td>
             <td>{{employee.office}}</td>
@@ -95,7 +96,7 @@
               <a (click)="editEmployee(i)" class="btn btn-success">
                 Edit
               </a>
-              <a (click)="deleteEmployee(i)" class="btn btn-danger">
+              <a (click)="eliminarEmployee(employee._id)" class="btn btn-danger">
                 Delete
               </a>
             </td>
@@ -150,7 +151,7 @@
             <button
               type="submit"
               class="btn btn-success"
-              (click)="updateEmployee()"
+              (click)="editarEmployee(model2._id)"
             >
             Save
             </button>

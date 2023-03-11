@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { EmployeeService } from './service/employee.service';
 
-interface Employee {
+export interface Employee {
+  _id: string;
   name: string;
   position: string;
   office: string;
@@ -33,50 +34,58 @@ export class AppComponent {
     })
   }
 
+  eliminarEmployee(id:string){
+    var answer = confirm('Estas seguro de querer eliminarlo?');
+    if(answer){
+      this._employeeService.eliminarEmployee(id).subscribe(data => {
+        this.employees = [];
+        this.obtenerEmployees();    
+      }, error => {
+        console.log(error);
+      })
+    }    
+  }
+
+  agregarEmployee(){
+    this._employeeService.añadirEmployee(this.model).subscribe(data => {
+      this.employees = [];
+      this.obtenerEmployees();
+      this.model = {_id:'',name:'',position:'',office:'',salary:0};  
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  editarEmployee(id:string){
+    this._employeeService.actualizarEmployee(id,this.model2).subscribe(data =>{
+      this.model2 = {_id:'',name:'',position:'',office:'',salary:0};
+      this.hideUpdate = true;
+      this.employees = [];
+      this.obtenerEmployees();
+    }, error => {
+      console.log(error);
+    })
+  }
+
   title:string = 'Angular CRUD';  
 
   employees: Employee [] = [];
 
-  model:Employee = {name:'',position:'',office:'',salary:0};
-  model2:Employee = {name:'',position:'',office:'',salary:0};
+  model:Employee = {_id:'',name:'',position:'',office:'',salary:0};
+  model2:Employee = {_id:'',name:'',position:'',office:'',salary:0};
   msg:string = '';
   hideUpdate:boolean = true;
-
-  addEmployee():void{
-    this.employees.push(this.model);
-    this.model = {name:'',position:'',office:'',salary:0};
-    this.msg = 'Record is successfuly Added';
-  }
-
-  deleteEmployee(i:number):void{
-    var answer = confirm('Estas seguro de querer eliminarlo?');
-    if(answer){
-      this.employees.splice(i, 1);
-      this.msg = 'Record is successfully Delete';
-    }    
-  }
 
   myValue = 0;
   editEmployee(i:number):void{
     this.hideUpdate = false;
+    this.model2._id = this.employees[i]._id;
     this.model2.name = this.employees[i].name;
     this.model2.position = this.employees[i].position;
     this.model2.office = this.employees[i].office;
     this.myValue = i;
   }
-
-  updateEmployee():void{
-    let i = this.myValue;
-    for(let j=0; j < this.employees.length; j++){
-      if(i == j){
-        this.employees[i] = this.model2;
-        this.model2 = {name:'',position:'',office:'',salary:0};
-        this.msg = 'Record is successfully Updated';
-      }
-    }
-    this.hideUpdate = true;
-  }
-
+  
   closeAlert():void{
     this.msg = '';
   }
