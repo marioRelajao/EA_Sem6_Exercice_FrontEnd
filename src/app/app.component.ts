@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { EmployeeService } from './service/employee.service';
+import { AboutComponent } from './about/about.component';
+import { Routes, RouterModule } from '@angular/router';
+// import { Employee } from 'src/models/employee';
 
 export interface Employee {
   _id: string;
@@ -12,10 +15,14 @@ export interface Employee {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  // template:`
+  //   <button (click)="goToAbout()">Go to About</button>
+  // `
 })
 
 export class AppComponent {
+
 
   constructor(private _employeeService: EmployeeService) {}
 
@@ -26,9 +33,10 @@ export class AppComponent {
   obtenerEmployees(){
     this._employeeService.getEmployees().subscribe(data => {
       console.log(data);
-      for(let i=0; i < data.length; i++){
+      this.employees = data;
+/*      for(let i=0; i < data.length; i++){
         this.employees.push(data[i]);
-      }
+      }*/
     }, error => {
       console.log(error);
     })

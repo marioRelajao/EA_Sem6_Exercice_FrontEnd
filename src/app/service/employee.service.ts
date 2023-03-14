@@ -11,8 +11,8 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  getEmployees(): Observable<any> {
-    return this.http.get(this.url);
+  getEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.url);
   }
 
   eliminarEmployee(id: String): Observable<any> {
