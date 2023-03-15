@@ -1,3 +1,5 @@
+<!-- <app-cabecera></app-cabecera> -->
+
 <div class="container app">
   <div class="row">
     <div class="col-sm-8">
@@ -88,10 +90,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let employee of employees; let i = index">
-            <td>{{employee._id}}</td>
+            <!--<td>{{employee._id}}</td>-->
             <td>{{employee.name}}</td>
             <td>{{employee.position}}</td>
-            <td>{{employee.office | slice:0:3}}</td>
+            <td>{{employee.office | slice:0:5}}</td>
             <td>
               <a (click)="editEmployee(i)" class="btn btn-success">
                 Edit
@@ -159,16 +161,12 @@
         </div>
       </form>
     </div>
-  </div>  
-  <h1>Angular Router App</h1>
-<!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
+  </div>
 <nav>
-  <ul>
-    <li><a routerLink="/app_component" routerLinkActive="active" ariaCurrentWhenActive="page">App Component</a></li>
+  <ul>    
+    <!--<li><a routerLink="/app_component" routerLinkActive="active" ariaCurrentWhenActive="page">App Component</a></li> -->
     <li><a routerLink="/about_component" routerLinkActive="active" ariaCurrentWhenActive="page">About Component</a></li>
   </ul>
 </nav>
-<!-- The routed views render in the <router-outlet>-->
 <router-outlet></router-outlet>
 </div>
-

@@ -8,6 +8,3 @@ export interface Employee {
     salary: number;
 };
 
-export const EmployeeSchema = new Schema<Employee>({
-    _id: {}
-});

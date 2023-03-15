@@ -2,23 +2,12 @@ import { Component } from '@angular/core';
 import { EmployeeService } from './service/employee.service';
 import { AboutComponent } from './about/about.component';
 import { Routes, RouterModule } from '@angular/router';
-// import { Employee } from 'src/models/employee';
-
-export interface Employee {
-  _id: string;
-  name: string;
-  position: string;
-  office: string;
-  salary: number;
-};
+import { Employee } from 'src/models/employee';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  // template:`
-  //   <button (click)="goToAbout()">Go to About</button>
-  // `
 })
 
 export class AppComponent {
