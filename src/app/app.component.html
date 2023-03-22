@@ -76,6 +76,9 @@
       </form>
     </div>
   </div>
+  <a (click)="eliminarAllEmployee()" class="btn btn-danger">
+    Delete All 💣
+  </a>
   <div class="row">
     <div class="col-sm-8">
       <h2>Read Data: </h2>
@@ -88,9 +91,11 @@
             <th>Actions</th>
           </tr>
         </thead>
+        
         <tbody>
           <tr *ngFor="let employee of employees; let i = index">
             <!--<td>{{employee._id}}</td>-->
+            
             <td>{{employee.name}}</td>
             <td>{{employee.position}}</td>
             <td>{{employee.office | slice:0:5}}</td>
@@ -101,6 +106,7 @@
               <a (click)="eliminarEmployee(employee._id)" class="btn btn-danger">
                 Delete
               </a>
+              
             </td>
           </tr>
         </tbody>

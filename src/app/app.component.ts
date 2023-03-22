@@ -43,6 +43,20 @@ export class AppComponent {
     }    
   }
 
+  eliminarAllEmployee(){
+    var answer = confirm('Estas seguro de querer funar a todos?');
+    if(answer){
+      this._employeeService.eliminarTodosEmployee().subscribe(data => {
+        this.employees = [];
+        this.obtenerEmployees();  //Al recoger los employees y ver que esta vacia todo gucci👌  
+      }, error => {
+        console.log(error);
+      })
+    }    
+  }
+
+
+
   agregarEmployee(){
     this._employeeService.añadirEmployee(this.model).subscribe(data => {
       this.employees = [];

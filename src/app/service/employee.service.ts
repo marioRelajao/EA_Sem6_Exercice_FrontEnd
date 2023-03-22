@@ -28,4 +28,8 @@ export class EmployeeService {
     return this.http.put(this.url + '/' + id, employee);
   }
 
+  eliminarTodosEmployee(): Observable<any>{
+    return this.http.delete(this.url + '/');
+  }
+
 }
